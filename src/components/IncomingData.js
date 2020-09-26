@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import PictureData from "./PictureData";
+import Info from "./Info";
 import axios from "axios";
+import styled from "styled-components";
 
 // https://api.nasa.gov/planetary/apod/ctGpxeU4La75WnR2hbjKFJhQhoWwWXLU6ENqViDU
+
 const IncomingData = () => {
-  const [pictureData, setPictureData] = useState([]);
+  const [info, setInfo] = useState([]);
 
   useEffect(() => {
     axios
@@ -13,14 +15,27 @@ const IncomingData = () => {
       )
       .then((response) => {
         console.log("success", response);
-        setPictureData(response.data);
+        setInfo(response.data);
       })
       .catch((err) => console.log("Error!", err));
   }, []);
 
   return (
-    <div>
-      <PictureData pictureData={pictureData} />
+    <div id="picture"
+      style={{
+        backgroundImage: `url(${info.url})`,
+      }}
+      alt={info.title}
+    >
+      <div>
+        <Info
+          picture={info.url}
+          date={info.date}
+          title={info.title}
+          copyright={info.copyright}
+          explanation={info.explanation}
+        />
+      </div>
     </div>
   );
 };
