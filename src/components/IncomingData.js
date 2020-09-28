@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Info from "./Info";
 import axios from "axios";
-import styled from "styled-components";
 
 // https://api.nasa.gov/planetary/apod/ctGpxeU4La75WnR2hbjKFJhQhoWwWXLU6ENqViDU
-
 
 const IncomingData = () => {
   const [info, setInfo] = useState([]);
@@ -22,7 +20,8 @@ const IncomingData = () => {
   }, []);
 
   return (
-    <div id="picture"
+    <div
+      id="picture"
       style={{
         backgroundImage: `url(${info.url})`,
       }}
@@ -30,7 +29,6 @@ const IncomingData = () => {
     >
       <div>
         <Info
-          picture={info.url}
           date={info.date}
           title={info.title}
           copyright={info.copyright}

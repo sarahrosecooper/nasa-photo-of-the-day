@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Wrapper= styled.div`
-display: flex;
-justify-content: space-between;
-font-family: "Optima";
-`
-const Experiment = styled.div`
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  font-family: "Optima";
+`;
+
+// HEADER STYLES
+
+const HeaderDiv = styled.div`
   width: 10%;
-  background-color: rgb(255,140,0);opacity:0.3;
+  background-color: rgb(255, 140, 0);
+  opacity: 0.3;
 `;
 
 const StyledH1 = styled.h1`
@@ -21,7 +25,9 @@ const Header = styled.div`
   margin: 20px;
 `;
 
-const Experiment2 = styled.div`
+// DATA STYLES
+
+const InfoDiv = styled.div`
   margin-top: 5%;
   width: 35%;
   display: flex;
@@ -29,62 +35,66 @@ const Experiment2 = styled.div`
   align-items: space-between;
   justify-content: space-between;
   text-transform: lowercase;
-  
-  
-`
-const Date= styled.div`
-  background-color: rgb(255,140,0);opacity:0.3;
-  margin-top: 100%;
-`
+`;
+
+const MainInfo = styled.div`
+  padding: 3%;
+  border: 2px solid gray;
+`;
+
+// DATA TITLE
 const Title = styled.h1`
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: underline;
-`
+`;
 
-const Main = styled.div`
-padding: 3%;
-border: 2px solid gray;
-`
+// DATE
 
+const Date = styled.div`
+  margin-top: 100%;
+  font-style: italic;
+`;
 
-const Info = ({ picture, date, title, copyright, explanation }) => {
+// INFO FUNCTION
+
+const Info = ({ date, title, copyright, explanation }) => {
   console.log("props", title, copyright, explanation);
   const [isShown, setIsShown] = useState(false);
 
   return (
     <Wrapper>
-    
-    <Experiment>
-      <StyledH1>
-        <Header>
-          <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
-            A<br></br>P<br></br>
-            <img
-              src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1224px-NASA_logo.svg.png"
-              id="nasaLogo"
-              alt="nasa logo"
-            ></img>
-            D<br></br>
-          </a>
-        </Header>
-      </StyledH1>
-      </Experiment>
+      <HeaderDiv>
+        <StyledH1>
+          <Header>
+            <a href="https://apod.nasa.gov/apod/astropix.html" target="_blank">
+              A<br></br>P<br></br>
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1224px-NASA_logo.svg.png"
+                id="nasaLogo"
+                alt="nasa logo"
+              ></img>
+              D<br></br>
+            </a>
+          </Header>
+        </StyledH1>
+      </HeaderDiv>
 
-      <Experiment2 onMouseEnter={() => setIsShown(true)}
-        onMouseLeave={() => setIsShown(false)}>
-          {isShown && (
-        <Main>
-        <Title>{title}</Title>
-        <p>photographer: {copyright}</p>
-        <p>{explanation}</p>
-        </Main>
-          )}
+      <InfoDiv
+        onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}
+      >
+        {isShown && (
+          <MainInfo>
+            <Title>{title}</Title>
+            <p>photographer: {copyright}</p>
+            <p>{explanation}</p>
+          </MainInfo>
+        )}
         <Date>
-        <p>{date}</p>
+          <p>{date}</p>
         </Date>
-        </Experiment2>
-
+      </InfoDiv>
     </Wrapper>
   );
 };
