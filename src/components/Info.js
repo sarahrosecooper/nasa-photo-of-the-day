@@ -1,8 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+const Wrapper= styled.div`
+display: flex;
+justify-content: space-between;
+`
 const Experiment = styled.div`
-  display: flex;
+  width: 10%;
+  background-color: red;
 `;
 
 const StyledH1 = styled.h1`
@@ -12,15 +17,29 @@ const StyledH1 = styled.h1`
 `;
 
 const Header = styled.div`
-  display: flex;
-  align-items: center;
-  flex-direction: column;
   margin: 20px;
 `;
+
+const Experiment2 = styled.div`
+  margin-top: 30px;
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: space-between;
+  justify-content: space-between;
+  
+  
+`
+
+const Date= styled.div`
+background-color: red;
+`
 
 const Info = ({ picture, date, title, copyright, explanation }) => {
   console.log("props", title, copyright, explanation);
   return (
+    <Wrapper>
+    
     <Experiment>
       <StyledH1>
         <Header>
@@ -35,12 +54,20 @@ const Info = ({ picture, date, title, copyright, explanation }) => {
           </a>
         </Header>
       </StyledH1>
+      </Experiment>
 
-      <p>{date}</p>
-      <h1>{title}</h1>
-      <p>{copyright}</p>
-      <p>{explanation}</p>
-    </Experiment>
+      <Experiment2>
+        <div>
+        <h1>{title}</h1>
+        <p>{copyright}</p>
+        <p>{explanation}</p>
+        </div>
+        <Date>
+        <p>{date}</p>
+        </Date>
+        </Experiment2>
+
+    </Wrapper>
   );
 };
 
