@@ -4,10 +4,11 @@ import styled from "styled-components";
 const Wrapper= styled.div`
 display: flex;
 justify-content: space-between;
+font-family: "Optima";
 `
 const Experiment = styled.div`
   width: 10%;
-  background-color: red;
+  background-color: rgb(255,140,0);opacity:0.3;
 `;
 
 const StyledH1 = styled.h1`
@@ -27,13 +28,19 @@ const Experiment2 = styled.div`
   flex-direction: column;
   align-items: space-between;
   justify-content: space-between;
+  text-transform: lowercase;
   
   
 `
 
 const Date= styled.div`
-background-color: red;
+background-color: rgb(255,140,0);opacity:0.3;
 `
+const Title = styled.h1`
+text-transform: uppercase;
+font-weight: bold;
+`
+
 
 const Info = ({ picture, date, title, copyright, explanation }) => {
   console.log("props", title, copyright, explanation);
@@ -58,8 +65,8 @@ const Info = ({ picture, date, title, copyright, explanation }) => {
 
       <Experiment2>
         <div>
-        <h1>{title}</h1>
-        <p>{copyright}</p>
+        <Title>{title}</Title>
+        <p>photographer: {copyright}</p>
         <p>{explanation}</p>
         </div>
         <Date>
