@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Wrapper= styled.div`
@@ -22,7 +22,7 @@ const Header = styled.div`
 `;
 
 const Experiment2 = styled.div`
-  margin-top: 30px;
+  margin-top: 5%;
   width: 35%;
   display: flex;
   flex-direction: column;
@@ -32,18 +32,26 @@ const Experiment2 = styled.div`
   
   
 `
-
 const Date= styled.div`
-background-color: rgb(255,140,0);opacity:0.3;
+  background-color: rgb(255,140,0);opacity:0.3;
+  margin-top: 100%;
 `
 const Title = styled.h1`
-text-transform: uppercase;
-font-weight: bold;
+  text-transform: uppercase;
+  font-weight: bold;
+  text-decoration: underline;
+`
+
+const Main = styled.div`
+padding: 3%;
+border: 2px solid gray;
 `
 
 
 const Info = ({ picture, date, title, copyright, explanation }) => {
   console.log("props", title, copyright, explanation);
+  const [isShown, setIsShown] = useState(false);
+
   return (
     <Wrapper>
     
@@ -63,12 +71,15 @@ const Info = ({ picture, date, title, copyright, explanation }) => {
       </StyledH1>
       </Experiment>
 
-      <Experiment2>
-        <div>
+      <Experiment2 onMouseEnter={() => setIsShown(true)}
+        onMouseLeave={() => setIsShown(false)}>
+          {isShown && (
+        <Main>
         <Title>{title}</Title>
         <p>photographer: {copyright}</p>
         <p>{explanation}</p>
-        </div>
+        </Main>
+          )}
         <Date>
         <p>{date}</p>
         </Date>
